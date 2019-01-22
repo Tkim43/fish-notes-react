@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import { Link } from 'react-router-dom';
+import SideNav from './side_nav';
+import './nav.scss'
 
 class Nav extends Component {
     state={
@@ -17,9 +20,37 @@ class Nav extends Component {
             }
         ]
     }
+    buildLink(link){
+        return (
+        <li key={link.to}>
+            <Link to={link.to}>{link.text}</Link>
+        </li>);
+    }
+    getSideNavRef(e){
+        console.log("side Nav ref", e);
+    }  
+    renderLinks= ()=>{
+        const {common} =this.state
+        const commonLinks = common.map(this.buildLink);
+        return[...commonLinks];
+    }
     render(){
         return(
-            <nav className="blue-grey darken-3"></nav>
+            <Fragment>
+                <nav className="blue-grey darken-3">
+                    <div className="nav-wrapper">
+                        <Link className="brand-logo" to="/">Fish Notes</Link>
+                        <a href="#" data-target="side-nav" className="sidenav-trigger">
+                            <i className="material-icons">menu</i>
+                        </a>
+                        <ul className="right hide-on-med-and-down">
+                            {this.renderLinks()}
+                        </ul>
+                    </div>
+                </nav>
+                <SideNav renderLinks={this.renderLinks}/>
+            </Fragment>
+            
         )
     }
 }

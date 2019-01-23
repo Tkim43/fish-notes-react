@@ -6,14 +6,16 @@ import {Route, Switch} from 'react-router-dom';
 import NotFound from './general/404';
 import Nav from './nav/nav';
 import About from './about';
-import Graph from './graph'
+import Home from './home';
+import Graph from './graph';
 
 const App = () => (
     <div>
         <Nav/>
         <div className="container">
             <Switch>
-                <Route path="/" exact component={List}/>
+                <Route path="/" exact component={Home}/>
+                <Route path="/notes" exact component={List}/>
                 <Route path="/about" component={About}/>
                 <Route path="/graph" component={Graph}/>
                 <Route component={NotFound}/>

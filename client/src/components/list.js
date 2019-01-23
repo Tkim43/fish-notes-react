@@ -25,10 +25,10 @@ class List extends Component {
         console.log("list Props", this.props);
         const { handleSubmit, reset } = this.props;
         return(
-            <div>
-                <h1 className="center">Fish Notepad</h1>
+            <div className="container">
+                <h1 className="center monoFont">Fish Notepad</h1>
                 <p className="center grey-text">Keep track of all your fish!</p>
-            <div>
+            
                 <form  className="col s5" onSubmit ={handleSubmit(this.handleAddItem.bind(this))}>
                     <div className="row input-field">
                         {/* <i className="small material-icons">pets</i> */}
@@ -47,8 +47,36 @@ class List extends Component {
                         <button type="button" onClick={reset} className="btn red">Cancel</button>
                     </div>
                 </form>
-                        </div>
-                        </div>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Species</th>
+                        <th>Location</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Yellowtail</td>
+                        <td>Santa Monica Pier</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Yellowtail</td>
+                        <td>Santa Monica Pier</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Yellowtail</td>
+                        <td>Santa Monica Pier</td>
+                        <td>10</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
                     );
     }
 }

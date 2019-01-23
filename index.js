@@ -1,25 +1,40 @@
-
 const express = require('express');
-const cors = require('cors');
+const mysql = require('mysql');
+const db = require('./server/config');
+const app = express();
 const { resolve } = require('path');
 const PORT = process.env.PORT || 9000;
 
-const app = express();
-
-app.use(cors());
-app.use(express.urlencoded({extended: false}));
+app.use(express.static(resolve(__dirname,'client','dist')));
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
-app.use(express.static(resolve(__dirname, 'client', 'dist')));
+function errorHandling(req, res){
+    res.status(req.status || 500).send(req.error || 'Server Error');
+}
 
-require('./routes')(app);
+require('./server/routes')(app);
 
-app.get('/', (req, res) => {
-    res.send('<h1>Server Running!</h1>');
-});
+// app.get('/api/userhome', async (req, res, next) => {
+//     try {
+//         const { user } = req;
 
-app.listen(PORT, () => {
-    console.log('Server running on PORT:' + PORT);
-}).on('error', (err) => {
-    console.log('Listen Error: You already have a server running on PORT:' + PORT);
-});
+//         const query = 'SELECT * FROM ?? WHERE ?? = ?';
+//         const inserts = ['sets', 'userID', user.ID];
+
+//         const sql = mysql.format(query, inserts);
+
+//         const sets = await db.query(sql);
+
+//         res.send({
+//             success: true,
+//             sets
+//         });
+//     } catch (err){
+//         req.status = 500;
+//         req.error = 'Error getting user sets';
+
+//         return next();
+//     }
+    
+// }, errorHandling);

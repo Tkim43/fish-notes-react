@@ -11,6 +11,10 @@ class Nav extends Component {
                 to: '/'
             },
             {
+                text: 'Notes',
+                to: '/notes'
+            },
+            {
                 text: 'About',
                 to: '/about'
             },
@@ -37,9 +41,9 @@ class Nav extends Component {
     render(){
         return(
             <Fragment>
-                <nav className="blue-grey darken-3">
+                <nav className="blue-grey darken-2">
                     <div className="nav-wrapper">
-                        <Link className="brand-logo" to="/">Fish Notes</Link>
+                        <Link className="brand-logo monoFont" to="/">Fish Notes</Link>
                         <a href="#" data-target="side-nav" className="sidenav-trigger">
                             <i className="material-icons">menu</i>
                         </a>

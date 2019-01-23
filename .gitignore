@@ -1,5 +1,11 @@
-node_modules
-
 .idea
 .vscode
 .DS_Store
+
+node_modules
+
+
+server/config/jwt.js
+server/config/mysqlCredentials.js
+
+

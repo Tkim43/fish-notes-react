@@ -13,28 +13,37 @@ function errorHandling(req, res){
     res.status(req.status || 500).send(req.error || 'Server Error');
 }
 
-require('./server/routes')(app);
+app.get('/api/home', async (req, res, next) => {
+    try {
+        const query = 'SELECT * FROM ?? WHERE ?? = ?';
+        const inserts = ['fish', 'ID', 1];
 
-// app.get('/api/userhome', async (req, res, next) => {
-//     try {
-//         const { user } = req;
+        const sql = mysql.format(query, inserts);
 
-//         const query = 'SELECT * FROM ?? WHERE ?? = ?';
-//         const inserts = ['sets', 'userID', user.ID];
+        const userInfo = await db.query(sql);
 
-//         const sql = mysql.format(query, inserts);
+        res.send({
+            success: true,
+            userInfo
+        });
 
-//         const sets = await db.query(sql);
+    } catch (err){
+        req.status = 500;
+        req.error = 'Error getting user information';
 
-//         res.send({
-//             success: true,
-//             sets
-//         });
-//     } catch (err){
-//         req.status = 500;
-//         req.error = 'Error getting user sets';
-
-//         return next();
-//     }
+        return next();
+    }
     
-// }, errorHandling);
+}, errorHandling);
+
+//starts Express server on defined port
+app.listen(PORT, ()=>{
+    console.log('Server running on PORT:', PORT);
+});
+
+// add routes to express app
+// routes(app);
+
+app.get('*', (req, res) => {
+    res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+});

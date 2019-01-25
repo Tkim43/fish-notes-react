@@ -36,6 +36,30 @@ app.get('/api/home', async (req, res, next) => {
     
 }, errorHandling);
 
+app.post('/api/add_species/:species/location/:location/amount/:amount', async (req, res, next)=>{
+    try {
+        const {species, location, amount} = req.params;
+
+        const query = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)';
+        const inserts = ['fish', 'species', 'location', 'amount', species, location, amount];
+
+        const sql = mysql.format(query, inserts);
+
+        const results = await db.query(sql);
+
+        res.send({
+            success: true,
+            results
+        });
+    } catch(err) {
+        req.status = 500;
+        req.error = 'Error posting category';
+
+        return next();
+    }
+}, errorHandling);
+
+
 //starts Express server on defined port
 app.listen(PORT, ()=>{
     console.log('Server running on PORT:', PORT);

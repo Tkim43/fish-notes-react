@@ -3,10 +3,7 @@ import {Link} from 'react-router-dom';
 
 class Home extends Component {
     componentDidMount(){
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.collapsible');
-            var instances = M.Collapsible.init(elems, "accordion");
-        });
+        this.instance = M.Collapsible.init(this.collapsbile);
     }
     render(){
         console.log("list Props", this.props);
@@ -17,7 +14,7 @@ class Home extends Component {
                 <h5 className="grey-text monoFont">3:00pm</h5>
                 <Link to="/notes" className="btn green-darken-2">Add Fish</Link>
             </div>
-            <ul className="collapsible popout s12">
+            <ul ref={(e)=> this.collapsbile = e} className="collapsible popout s12">
                 <li>
                 <div className="collapsible-header"><i className="material-icons">info</i>About Fish Notes</div>
                 <div className="collapsible-body"><span>A application that keeps gives anglers a fast and efficient way to log all important information about their fishing trips.</span></div>

@@ -1,6 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
-const db = require('./server/config');
+const db = require('./server/db');
 const app = express();
 const { resolve } = require('path');
 const PORT = process.env.PORT || 9000;
@@ -15,19 +15,19 @@ function errorHandling(req, res){
 
 app.get('/api/home', async (req, res, next) => {
     try {
-        const query = 'SELECT * FROM ?? WHERE ?? = ?';
-        const inserts = ['fish', 'ID', 1];
+        const query = 'SELECT * FROM ??';
+        const inserts = ['fish'];
 
         const sql = mysql.format(query, inserts);
 
         const userInfo = await db.query(sql);
-
         res.send({
             success: true,
             userInfo
         });
 
     } catch (err){
+        console.log('Error:', err);
         req.status = 500;
         req.error = 'Error getting user information';
 

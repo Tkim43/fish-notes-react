@@ -7,7 +7,6 @@ const { promisify } = require('util');
 
 db.connect((err) => {
     if (err) throw err;
-
     console.log("Database Connected");
 });
 

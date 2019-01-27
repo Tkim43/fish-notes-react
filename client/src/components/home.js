@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Clock from './clock';
 
 class Home extends Component {
     componentDidMount(){
@@ -11,8 +12,9 @@ class Home extends Component {
             <div>
             <div className="row center">
                 <h1 className="blue-text monoFont">Today</h1>
-                <h5 className="grey-text monoFont">3:00pm</h5>
-                <Link to="/notes" className="btn green-darken-2">Add Fish</Link>
+                <Clock/>
+                {/* <h5 className="grey-text monoFont">3:00pm</h5> */}
+                <Link to="/notes" className="btn-large blue-darken-2">Add Fish</Link>
             </div>
             <ul ref={(e)=> this.collapsbile = e} className="collapsible popout s12">
                 <li>

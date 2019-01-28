@@ -1,20 +1,27 @@
 import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
+import {updateTime} from '../actions/index'
 
 class Clock extends Component{
-
+    componentDidMount(){
+        setInterval(()=>{
+            this.props.updateTime();
+        },1000);
+    }
     render(){
-        let day = new Date().toLocaleDateString();
-        let time = new Date().toLocaleTimeString();
         return(
-        <Fragment>
-            {/* <div className="divider"></div> */}
-            <h5>{day}</h5>
-            {/* <div className="divider"></div> */}
-            <h6 className="grey-text">{time}</h6>
-        </Fragment>
+            <div className ="text-center mt-5">
+                <h5 className="grey-text">{this.props.date}</h5>
+                <h6 className="">{this.props.time}</h6>
+            </div>
         )
     }
-    
 }
 
-export default Clock;
+function mapStateProps(state){
+    return{
+        time: state.list.time,
+        date: state.list.date
+    }
+}
+export default connect(mapStateProps,{updateTime: updateTime})(Clock);

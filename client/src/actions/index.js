@@ -8,3 +8,10 @@ import axios from 'axios';
 //         payload: resp
 //     }
 // }
+
+export function updateTime(){
+    return(
+        {type:'UPDATE_TIME',
+         payload: new Date().toLocaleTimeString()}
+    )
+}

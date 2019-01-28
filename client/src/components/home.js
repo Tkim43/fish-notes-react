@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Clock from './clock';
+import '../assets/css/home.scss';
 
 class Home extends Component {
     componentDidMount(){
@@ -11,7 +12,7 @@ class Home extends Component {
         return(
             <div>
             <div className="row center">
-                <h1 className="blue-text monoFont">Today</h1>
+                <h1 className="blue-text todayFont">Today</h1>
                 <Clock/>
                 {/* <h5 className="grey-text monoFont">3:00pm</h5> */}
                 <Link to="/notes" className="btn-large blue-darken-2">Add Fish</Link>

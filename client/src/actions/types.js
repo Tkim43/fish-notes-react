@@ -1,4 +1,5 @@
 export default {
-    GET_ALL_LIST_DATA: 'get_all_list_data'
+    GET_ALL_LIST_DATA: 'get_all_list_data',
+    UPDATE_TIME: 'update_time',
 }
 

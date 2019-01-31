@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     all: [],
     single: {},
     auth: false,
-    time: new Date().toLocaleTimeString().slice(0,4) + new Date().toLocaleTimeString().slice(-2),
+    time: new Date().toLocaleTimeString().slice(0,5) + " "+  new Date().toLocaleTimeString().slice(-2),
     date: new Date().toLocaleDateString(),
 };
 
@@ -14,7 +14,7 @@ export default (state=DEFAULT_STATE, action) => {
             console.log("List reducer", action);
             return {...state};
         case 'UPDATE_TIME':
-            return {time: new Date().toLocaleTimeString().slice(0,4) + new Date().toLocaleTimeString().slice(-2), date: new Date().toLocaleDateString()}
+            return {time: new Date().toLocaleTimeString().slice(0,5) + " " + new Date().toLocaleTimeString().slice(-2), date: new Date().toLocaleDateString()}
         default:
             return state;
     }

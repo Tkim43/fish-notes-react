@@ -15,3 +15,12 @@ export function updateTime(){
          payload: new Date().toLocaleTimeString()}
     )
 }
+
+export function addListData(species, location, total){
+    const resp = axios.patch(`/api/add_species/${species}/location/${location}/total/${total}`);
+    console.log("resp", resp);
+    return{
+        type: types.ADD_LIST_DATA,
+        payload: resp
+    }
+}

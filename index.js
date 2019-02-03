@@ -36,12 +36,12 @@ app.get('/api/home', async (req, res, next) => {
     
 }, errorHandling);
 
-app.post('/api/add_species/:species/location/:location/amount/:amount', async (req, res, next)=>{
+app.patch('/api/add_species/:species/location/:location/total/:total', async (req, res, next)=>{
     try {
-        const {species, location, amount} = req.params;
+        const {species, location, total} = req.params;
 
         const query = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)';
-        const inserts = ['fish', 'species', 'location', 'amount', species, location, amount];
+        const inserts = ['fish', 'species', 'location', 'total', species, location, total];
 
         const sql = mysql.format(query, inserts);
 

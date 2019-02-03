@@ -4,7 +4,8 @@ class Table extends Component{
     
     render(){
         return(
-            <table>
+        <div className="container background">
+            <table className="highlight">
                     <thead>
                     <tr>
                         <th>Species</th>
@@ -31,6 +32,7 @@ class Table extends Component{
                     </tr>
                     </tbody>
                 </table>
+     </div>
         );
     }
 }

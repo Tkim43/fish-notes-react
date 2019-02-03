@@ -79,29 +79,32 @@ class List extends Component {
         }
         const {handleSubmit , reset} =this.props
         return(
-            <div className="container">
-                <h1 className="center monoFont">Fish Notepad</h1>
-                <p className="center grey-text">Keep track of all your fish!</p>
-                <form  className="col s5" onSubmit ={handleSubmit(this.handleAddItem)}>
-                    <div className="row input-field">
-                        <Field size="s12" type="text"
-                        name="Species" label ="Species" component ={this.renderInput}></Field>
+                <div className="container">
+                    <h1 className="center monoFont">Fish Notepad</h1>
+                    <p className="center grey-text">Keep track of all your fish!</p>
+                    <form  className="col s5" onSubmit ={handleSubmit(this.handleAddItem)}>
+                        <div className="row input-field">
+                            <Field size="s12" type="text"
+                            name="Species" label ="Species" component ={this.renderInput}></Field>
+                        </div>
+                        <div className="row input-field">
+                            <Field size ="s12" type="text"
+                            name="Location" label="Location" component={this.renderInput}></Field>
+                        </div>
+                        <div className="row input-field">
+                            <Field size ="s12" type="number"
+                            name="Amount" label="Amount" component={this.renderInput}></Field>
+                        </div>
+                        <div className="col s4">
+                            <button className="btn blue" type="done" name="action">Add Item</button>
+                            <button type="button" onClick={this.showModal} className="btn red">Cancel</button>
+                        </div>
+                    </form>
+
+                    <div className="section"></div>
+                    <h4 className="monoFont center">Most Recent Catches</h4>
+                    <Table/>
                     </div>
-                    <div className="row input-field">
-                        <Field size ="s12" type="text"
-                        name="Location" label="Location" component={this.renderInput}></Field>
-                    </div>
-                    <div className="row input-field">
-                        <Field size ="s12" type="number"
-                        name="Amount" label="Amount" component={this.renderInput}></Field>
-                    </div>
-                    <div className="col s4">
-                        <button className="btn blue" type="done" name="action">Add Item</button>
-                        <button type="button" onClick={this.showModal} className="btn red">Cancel</button>
-                    </div>
-                </form>
-                <Table/>
-            </div>
                     );
     }
 }

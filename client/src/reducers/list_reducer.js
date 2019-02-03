@@ -10,7 +10,7 @@ const DEFAULT_STATE = {
 
 export default (state=DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.GET_ALL_LIST_DATA:
+        case types.ADD_LIST_DATA:
             console.log("List reducer", action);
             return {...state};
         case 'UPDATE_TIME':

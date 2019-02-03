@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form'
+import {Link} from 'react-router-dom'
 import { addListData } from '../actions'
 import Table from './table'
 import '../assets/css/list.scss';
+import '../assets/css/modal.scss';
 
 
 class List extends Component {
@@ -16,16 +18,22 @@ class List extends Component {
         await addListData(values.Species, values.Location, values.Amount);
         reset('notes');
     }
-    // renderInput= (props)=>{
-    //     console.log("render input", props);
-    //     return(
-    //         <div className ={`input-field col ${props.size}`}>
-    //             <input {...props.input} type="text" autoComplete ="off" />
-    //             <label>{props.label}</label>
-    //             <p className="red-text">{props.meta.touched && props.meta.error}</p>
-    //         </div>
-    //     );
-    // }
+    showModal = () =>{
+        this.setState({
+            show: true,
+        });
+    }
+    hideModal = () =>{
+        this.setState({
+            show: false,
+        });
+    }
+    handleCancel = () =>{
+        this.props.reset();
+        this.setState({
+            show: false,
+        });
+    }
     renderInput = ({
         input,
         label,
@@ -44,7 +52,31 @@ class List extends Component {
       )
     render(){
         console.log("list Props", this.props);
-        const required = (value) => value ? undefined : 'Required'
+        if(this.state.show){
+            return (
+                <div className="basic-modal" onClick={this.hideModal}>
+                    <div onClick={e => e.stopPropagation()} className="basic-modal-content">
+                        <div onClick={this.hideModal} className="basic-modal-close center">X</div>
+                            <div>
+                                <form className="col s12">
+                                        <div>
+                                            <h6 className="">Are you sure you want to discard the changes you made?</h6>
+                                        </div>
+                                        <div className = "row">
+                                            {/* <button onClick={this.} className="green lighten-2 btn waves-effect waves-light btn-large" type="done" name="action">
+                                                Yes
+                                            </button> */}
+                                            <Link to={`/`} className="blue btn waves-effect waves-light " type="done" name="action">Yes</Link>
+                                            <button onClick={this.handleCancel} className="red btn waves-effect waves-light " type="button" name="action">
+                                                No
+                                            </button>
+                                        </div>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            )
+        }
         const {handleSubmit , reset} =this.props
         return(
             <div className="container">
@@ -65,7 +97,7 @@ class List extends Component {
                     </div>
                     <div className="col s4">
                         <button className="btn blue" type="done" name="action">Add Item</button>
-                        <button type="button" onClick={reset} className="btn red">Cancel</button>
+                        <button type="button" onClick={this.showModal} className="btn red">Cancel</button>
                     </div>
                 </form>
                 <Table/>

@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form'
 import { addListData } from '../actions'
-import Form from './form.js'
+import Table from './table'
 import '../assets/css/list.scss';
 
 
-class Notes extends Component {
+class List extends Component {
     state ={
         show: false
     }
-    // handleAddItem = async (values) => {
-    //     console.log('Form', values)
-    //     const{reset} = this.props;
-    //     await addListData(values.Species, values.Location, values.Amount);
-    //     reset('list');
-    // }
-    // renderInput(props){
+    handleAddItem = async (values) => {
+        console.log('Form', values)
+        console.log("these are your props", this.props)
+        const {reset} = this.props;
+        await addListData(values.Species, values.Location, values.Amount);
+        reset('notes');
+    }
+    // renderInput= (props)=>{
     //     console.log("render input", props);
     //     return(
     //         <div className ={`input-field col ${props.size}`}>
@@ -26,80 +26,71 @@ class Notes extends Component {
     //         </div>
     //     );
     // }
+    renderInput = ({
+        input,
+        label,
+        type,
+        meta: { touched, error, warning }
+      }) => (
+        <div>
+          <label>{label}</label>
+          <div>
+            <input {...input} placeholder={label} type={type} />
+            {touched &&
+              ((error && <span className="red-text">{error}</span>) ||
+                (warning && <span>{warning}</span>))}
+          </div>
+        </div>
+      )
     render(){
         console.log("list Props", this.props);
-        // const required = value => (value || typeof value === 'number' ? undefined : 'Required')
-        // const number = value =>
-        // value && isNaN(Number(value)) ? 'Must be a number' : undefined
-        // const { handleSubmit, reset } = this.props
+        const required = (value) => value ? undefined : 'Required'
+        const {handleSubmit , reset} =this.props
         return(
             <div className="container">
                 <h1 className="center monoFont">Fish Notepad</h1>
                 <p className="center grey-text">Keep track of all your fish!</p>
-                <Form/>
-                {/* <form  className="col s5" onSubmit ={handleSubmit}>
+                <form  className="col s5" onSubmit ={handleSubmit(this.handleAddItem)}>
                     <div className="row input-field">
-                        <Field size="s12" validate={required} name="Species" label ="Species" component ={this.renderInput}></Field>
+                        <Field size="s12" type="text"
+                        name="Species" label ="Species" component ={this.renderInput}></Field>
                     </div>
                     <div className="row input-field">
-                        <Field size ="s12" validate={required} name="Location" label="Location" component={this.renderInput}></Field>
+                        <Field size ="s12" type="text"
+                        name="Location" label="Location" component={this.renderInput}></Field>
                     </div>
                     <div className="row input-field">
-                        <Field size ="s12" validate={required} name="Amount" label="Amount" component={this.renderInput}></Field>
+                        <Field size ="s12" type="number"
+                        name="Amount" label="Amount" component={this.renderInput}></Field>
                     </div>
                     <div className="col s4">
                         <button className="btn blue" type="done" name="action">Add Item</button>
                         <button type="button" onClick={reset} className="btn red">Cancel</button>
                     </div>
-                </form> */}
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Species</th>
-                        <th>Location</th>
-                        <th>Amount</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>Yellowtail</td>
-                        <td>Santa Monica Pier</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>Yellowtail</td>
-                        <td>Santa Monica Pier</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>Yellowtail</td>
-                        <td>Santa Monica Pier</td>
-                        <td>10</td>
-                    </tr>
-                    </tbody>
-                </table>
-
+                </form>
+                <Table/>
             </div>
                     );
     }
 }
 
+function validate({ Species, Location, Amount}){
+    const error = {};
 
-// function mapStateToProps(state){
-//     return{
-//         todos: state.list.all
-//     }
-// }
+    if(!Species) error.Species = 'Required';
+    if(!Location) error.Location = 'Required';
+    if(!Amount) error.Amount = 'Required';
+    if(Amount && isNaN(Number(Amount))) error.Amount = 'Must be a number'
+    return error;
+}
 
-// export default connect(mapStateToProps, {
-//     addListData,
-// })(Notes);
 
-// Notes = reduxForm({
-//     form: 'list' 
-// })(Notes)
+export default reduxForm({
+    form: 'list',
+    validate
+})(List)
 
-export default Notes;
+
+
 
 

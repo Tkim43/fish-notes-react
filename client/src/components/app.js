@@ -1,10 +1,11 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css';
 import React from 'react';
-import List from './list';
+
 import {Route, Switch} from 'react-router-dom';
 import NotFound from './general/404';
 import Nav from './nav/nav';
+import List from './list';
 import About from './about';
 import Home from './home';
 import Graph from './graph';

@@ -59,6 +59,29 @@ app.patch('/api/add_species/:species/location/:location/total/:total', async (re
     }
 }, errorHandling);
 
+app.get('/api/statistics', async (req, res, next) => {
+    try {
+        const query = 'SELECT  * FROM ??';
+        const inserts = ['fish'];
+
+        const sql = mysql.format(query, inserts);
+
+        const userInfo = await db.query(sql);
+        res.send({
+            success: true,
+            userInfo
+        });
+
+    } catch (err){
+        console.log('Error:', err);
+        req.status = 500;
+        req.error = 'Error getting user information';
+
+        return next();
+    }
+    
+}, errorHandling);
+
 
 //starts Express server on defined port
 app.listen(PORT, ()=>{

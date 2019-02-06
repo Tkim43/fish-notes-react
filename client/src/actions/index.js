@@ -24,3 +24,11 @@ export function addListData(species, location, total){
         payload: resp
     }
 }
+
+export function getListData(){
+    const resp = axios.get(`/api/statistics`)
+    return{
+        type: types.GET_LIST_DATA,
+        payload: resp
+    }
+}

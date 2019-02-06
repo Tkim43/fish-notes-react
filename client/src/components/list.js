@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import { addListData } from '../actions'
+import { connect } from 'react-redux';
 import Table from './table'
 import '../assets/css/list.scss';
 import '../assets/css/modal.scss';
@@ -11,6 +12,10 @@ class List extends Component {
     state ={
         show: false
     }
+    // componentDidMount(){
+    //     const { getListData } = this.props;
+    //     getListData();
+    // }
     handleAddItem = async (values) => {
         console.log('Form', values)
         console.log("these are your props", this.props)
@@ -119,11 +124,21 @@ function validate({ Species, Location, Amount}){
     return error;
 }
 
+function mapStateToProps(state){
+    const { list } = state;
+    return {
+        data: list,
+    }
+}
 
-export default reduxForm({
+List = reduxForm({
     form: 'list',
     validate
 })(List)
+
+export default connect(mapStateToProps,{
+    addListData
+})(withRouter(List));
 
 
 

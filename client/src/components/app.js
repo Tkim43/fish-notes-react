@@ -1,7 +1,6 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css';
 import React from 'react';
-
 import {Route, Switch} from 'react-router-dom';
 import NotFound from './general/404';
 import Nav from './nav/nav';
@@ -16,7 +15,7 @@ const App = () => (
         <div className="container">
             <Switch>
                 <Route path="/" exact component={Home}/>
-                <Route path="/notes" exact component={List}/>
+                <Route path="/notes" component={List}/>
                 <Route path="/about" component={About}/>
                 <Route path="/graph" component={Graph}/>
                 <Route component={NotFound}/>

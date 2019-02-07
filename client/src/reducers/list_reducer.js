@@ -11,10 +11,11 @@ const DEFAULT_STATE = {
 
 export default (state=DEFAULT_STATE, action) => {
     switch(action.type){
+        case types.DELETE_FISH_DATA:
+            return{...state}
         case types.GET_LIST_DATA:
             return {data: action.payload.data.userInfo}
         case types.ADD_LIST_DATA:
-            return {}
             return {...state};
         case 'UPDATE_TIME':
             return {time: new Date().toLocaleTimeString().slice(0,5) + " " + new Date().toLocaleTimeString().slice(-2), date: new Date().toLocaleDateString()}

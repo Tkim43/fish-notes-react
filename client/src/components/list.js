@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form'
 import {Link, withRouter} from 'react-router-dom'
-import { addListData } from '../actions'
+import { addListData, getListData} from '../actions'
 import { connect } from 'react-redux';
 import Table from './table'
 import '../assets/css/list.scss';
@@ -12,16 +12,19 @@ class List extends Component {
     state ={
         show: false
     }
-    // componentDidMount(){
-    //     const { getListData } = this.props;
-    //     getListData();
-    // }
+    componentDidMount(){
+        const {getListData, history} = this.props;
+        
+        getListData();
+    }
     handleAddItem = async (values) => {
         console.log('Form', values)
         console.log("these are your props", this.props)
-        const {reset} = this.props;
+        const {reset, getListData} = this.props;
         await addListData(values.Species, values.Location, values.Amount);
         reset('notes');
+        getListData();
+        history.push('/notes');
     }
     showModal = () =>{
         this.setState({
@@ -57,6 +60,21 @@ class List extends Component {
       )
     render(){
         console.log("list Props", this.props);
+        // if(this.props.data === undefined){
+        //     return(
+        //         <div className="preloader-wrapper big active">
+        //         <div className="spinner-layer spinner-blue-only">
+        //         <div className="circle-clipper left">
+        //             <div className="circle"></div>
+        //         </div><div className="gap-patch">
+        //             <div className="circle"></div>
+        //         </div><div className="circle-clipper right">
+        //             <div className="circle"></div>
+        //         </div>
+        //         </div>
+        //     </div>
+        //     )
+        // }
         if(this.state.show){
             return (
                 <div className="basic-modal" onClick={this.hideModal}>
@@ -137,7 +155,8 @@ List = reduxForm({
 })(List)
 
 export default connect(mapStateToProps,{
-    addListData
+    addListData,
+    getListData
 })(withRouter(List));
 
 

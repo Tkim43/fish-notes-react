@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { getListData } from '../actions'
+import { getListData, deleteFishData } from '../actions'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class Table extends Component{
@@ -7,35 +8,34 @@ class Table extends Component{
         const { getListData } = this.props;
         getListData();
     }
+    edit(){
+
+    }
+    delete(item, e){
+        e.preventDefault();
+        e.stopPropagation();
+        const {deleteFishData, getListData} = this.props
+        deleteFishData(item);
+        getListData();
+    }
     render(){
-        if(this.props.data.data[0] === undefined){
-            return(
-                <div className="preloader-wrapper big active">
-                <div className="spinner-layer spinner-blue-only">
-                <div className="circle-clipper left">
-                    <div className="circle"></div>
-                </div><div className="gap-patch">
-                    <div className="circle"></div>
-                </div><div className="circle-clipper right">
-                    <div className="circle"></div>
-                </div>
-                </div>
-            </div>
-            )
-        }
-        console.log("this is our prosp", this.props.data.data)
-        let species = this.props.data.data && this.props.data.data[0] ?
+        let species = this.props.data.data &&  this.props.data.data[0] ?
         this.props.data.data.map((item, i)=>
             <tr key={i}>
-                <td>{item.species}</td>
-                <td>{item.location}</td>
-                <td>{item.total}</td>
+                <td className="">{item.species}</td>
+                <td className="">{item.location}</td>
+                <td className="">{item.total}</td>
+                <td><button onClick={(e) => this.delete(item.ID, e)} className="small-btn red white-text right">delete</button></td>
+                {/* <td><button onClick={(e) => this.edit(item.ID, e)} className="small-btn black white-text right background">edit</button></td> */}
             </tr>
-            ) : <tr>no recent catches</tr>;
+            ) : <tr>
+                    <td>No recent catches</td>
+                </tr>;
 
         return(
+        this.props.data.data &&  this.props.data.data[0] ?
         <div className="container background">
-            <table className="highlight">
+            <table className="highlight responsive-table .hide-on-med-and-down .hide-on-large-only">
                     <thead>
                     <tr>
                         <th>Species</th>
@@ -47,8 +47,9 @@ class Table extends Component{
                     <tbody>
                     {species}
                     </tbody>
-                </table>
-     </div>
+            </table>
+        </div> 
+        : <h5 className="center grey-text">No Fish <i class="material-icons">mood_bad</i></h5>
         );
     }
 }
@@ -57,12 +58,10 @@ function mapStateToProps(state){
     const { list } = state;
     return{
         data: list,
-        species: list,
-        location: list,
-        amount: list,
     }
 }
 
 export default connect(mapStateToProps,{
     getListData,
-})(Table);
+    deleteFishData
+})(withRouter(Table));

@@ -32,3 +32,11 @@ export function getListData(){
         payload: resp
     }
 }
+
+export function deleteFishData(ID){
+    const resp = axios.patch(`/api/delete/${ID}`)
+    return{
+        type: types.DELETE_FISH_DATA,
+        payload: resp
+    }
+}

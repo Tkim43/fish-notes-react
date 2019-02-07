@@ -14,8 +14,8 @@ class List extends Component {
     }
     componentDidMount(){
         const {getListData, history} = this.props;
-        
         getListData();
+        history.push('/notes');
     }
     handleAddItem = async (values) => {
         console.log('Form', values)

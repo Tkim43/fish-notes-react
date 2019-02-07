@@ -49,7 +49,7 @@ class Table extends Component{
                     </tbody>
             </table>
         </div> 
-        : <h5 className="center grey-text">No Fish <i class="material-icons">mood_bad</i></h5>
+        : <h5 className="center grey-text">No Fish <i className="material-icons">mood_bad</i></h5>
         );
     }
 }

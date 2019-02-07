@@ -20,23 +20,23 @@ class About extends Component {
                 <div className="slider" ref={(e)=> this.slider = e}>
                     <ul className="slides">
                         <li>
-                            <img src={me} width="100%"></img>
+                            <img src={me}></img>
                             {/* <div className="caption center-align">
                             <h3>This is our big Tagline!</h3>
                             <h5 className="light grey-text text-lighten-3">Here's our small slogan.</h5>
                             </div> */}
                         </li>
                         <li>
-                            <img src={bass}></img>
+                            <img className="contain" src={bass}></img>
                         </li>
                         <li>
-                            <img src={fishpole} ></img>
+                            <img className="contain" src={fishpole} ></img>
                         </li>
                         {/* <li>
                             <img src={smallfish} ></img>
                         </li> */}
                         <li>
-                            <img src={yellow}></img>
+                            <img className="contain" src={yellow}></img>
                         </li>
                     </ul>
                 </div>

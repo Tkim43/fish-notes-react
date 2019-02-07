@@ -34,12 +34,14 @@ class Home extends Component {
                 <blockquote className="collapsible-body"><span>A application that gives anglers a fast and efficient way to log all important information about their fishing trips.</span></blockquote>
                 </li>
                 <li>
-                <div className="collapsible-header"><i className="material-icons">place</i>List of Locations You've been to</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                {/* <div className="collapsible-header"><i className="material-icons">place</i>List of Locations You've been to</div> */}
+                <div className="collapsible-header"><i className="material-icons">place</i>How to use Fish Notes</div>
+                <blockquote className="collapsible-body"><span>GIF WILL GO HERE</span></blockquote>
                 </li>
                 <li>
-                <div className="collapsible-header"><i className="material-icons">insert_chart</i>fish count statistics</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                {/* <div className="collapsible-header"><i className="material-icons">insert_chart</i>fish count statistics</div> */}
+                <div className="collapsible-header"><i className="material-icons">place</i>Technologies Used</div>
+                <blockquote className="collapsible-body"><span>I created fish notes using a React frontend and a Node backend. I also used Redux, Materialize, Git, MySQL, SCSS, CSS, HTML and Javascript.</span></blockquote>
                 </li>
             </ul>
                 

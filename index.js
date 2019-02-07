@@ -93,4 +93,7 @@ app.listen(PORT, ()=>{
 
 app.get('*', (req, res) => {
     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+    if (err) {
+        res.status(500).send(err)
+    }
 });

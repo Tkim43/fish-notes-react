@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Clock from './clock';
+// import {connect} from 'react-redux'
+// import {getListData} from '../actions'
 import logo from '../assets/images/fish_count.png'
 import '../assets/css/home.scss';
 
 class Home extends Component {
     componentDidMount(){
         this.instance = M.Collapsible.init(this.collapsbile);
+        // const {getListData} = this.props;
+        // getListData();
     }
+    // redirect =(event)=>{
+    // event.preventDefault();
+    // const {history} = this.props
+    //     history.push('/notes');
+    // }
     render(){
         console.log("list Props", this.props);
         return(
@@ -17,7 +26,7 @@ class Home extends Component {
                 <img className="logo" src={logo}></img>
                 <Clock/>
                 {/* <h5 className="grey-text monoFont">3:00pm</h5> */}
-                <Link to="/notes" className="btn-large blue-darken-2">Add Fish</Link>
+                <Link to={'/notes'} className="btn-large blue-darken-2">Add Fish</Link>
             </div>
             <ul ref={(e)=> this.collapsbile = e} className="collapsible popout s12">
                 <li>
@@ -38,5 +47,16 @@ class Home extends Component {
         );
     }
 }
+
+// function mapStateToProps(state){
+//     const { list } = state;
+//     return {
+//         data: list,
+//     }
+// }
+
+// export default connect(mapStateToProps,{
+//     getListData,
+// })(Home);
 
 export default Home;

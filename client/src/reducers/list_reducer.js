@@ -14,7 +14,6 @@ export default (state=DEFAULT_STATE, action) => {
         case types.GET_LIST_DATA:
             return {data: action.payload.data.userInfo}
         case types.ADD_LIST_DATA:
-            return {}
             return {...state};
         case 'UPDATE_TIME':
             return {time: new Date().toLocaleTimeString().slice(0,5) + " " + new Date().toLocaleTimeString().slice(-2), date: new Date().toLocaleDateString()}

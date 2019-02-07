@@ -14,15 +14,17 @@ class List extends Component {
     }
     componentDidMount(){
         const {getListData, history} = this.props;
-        // history.push('/notes');
+        
         getListData();
     }
     handleAddItem = async (values) => {
         console.log('Form', values)
         console.log("these are your props", this.props)
-        const {reset} = this.props;
+        const {reset, getListData} = this.props;
         await addListData(values.Species, values.Location, values.Amount);
         reset('notes');
+        getListData();
+        history.push('/notes');
     }
     showModal = () =>{
         this.setState({

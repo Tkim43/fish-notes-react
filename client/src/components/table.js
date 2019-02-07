@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { getListData } from '../actions'
+import { getListData, deleteFishData } from '../actions'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -8,14 +8,25 @@ class Table extends Component{
         const { getListData } = this.props;
         getListData();
     }
+    edit(){
+
+    }
+    delete(item, e){
+        e.preventDefault();
+        e.stopPropagation();
+        const {deleteFishData, getListData} = this.props
+        deleteFishData(item);
+        getListData();
+    }
     render(){
-        
-        let species = this.props.data.data && this.props.data.data[0] ?
+        let species = this.props.data.data &&  this.props.data.data[0] ?
         this.props.data.data.map((item, i)=>
             <tr key={i}>
-                <td>{item.species}</td>
-                <td>{item.location}</td>
-                <td>{item.total}</td>
+                <td className="">{item.species}</td>
+                <td className="">{item.location}</td>
+                <td className="">{item.total}</td>
+                <td><button onClick={(e) => this.delete(item.ID, e)} className="small-btn red white-text right">delete</button></td>
+                {/* <td><button onClick={(e) => this.edit(item.ID, e)} className="small-btn black white-text right background">edit</button></td> */}
             </tr>
             ) : <tr>
                     <td>No recent catches</td>
@@ -23,7 +34,7 @@ class Table extends Component{
 
         return(
         <div className="container background">
-            <table className="highlight">
+            <table className="highlight responsive-table .hide-on-med-and-down .hide-on-large-only">
                     <thead>
                     <tr>
                         <th>Species</th>
@@ -35,8 +46,8 @@ class Table extends Component{
                     <tbody>
                     {species}
                     </tbody>
-                </table>
-     </div>
+            </table>
+        </div>
         );
     }
 }
@@ -50,4 +61,5 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps,{
     getListData,
+    deleteFishData
 })(withRouter(Table));

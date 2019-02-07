@@ -31,7 +31,7 @@ class Home extends Component {
             <ul ref={(e)=> this.collapsbile = e} className="collapsible popout s12">
                 <li>
                 <div className="collapsible-header"><i className="material-icons">info</i>About Fish Notes</div>
-                <div className="collapsible-body"><span>A application that keeps gives anglers a fast and efficient way to log all important information about their fishing trips.</span></div>
+                <blockquote className="collapsible-body"><span>A application that gives anglers a fast and efficient way to log all important information about their fishing trips.</span></blockquote>
                 </li>
                 <li>
                 <div className="collapsible-header"><i className="material-icons">place</i>List of Locations You've been to</div>

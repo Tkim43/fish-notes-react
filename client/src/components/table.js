@@ -33,6 +33,7 @@ class Table extends Component{
                 </tr>;
 
         return(
+        this.props.data.data &&  this.props.data.data[0] ?
         <div className="container background">
             <table className="highlight responsive-table .hide-on-med-and-down .hide-on-large-only">
                     <thead>
@@ -47,7 +48,8 @@ class Table extends Component{
                     {species}
                     </tbody>
             </table>
-        </div>
+        </div> 
+        : <h5 className="center grey-text">No Fish <i class="material-icons">mood_bad</i></h5>
         );
     }
 }

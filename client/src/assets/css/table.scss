@@ -2,4 +2,9 @@
 //     margin: auto;
 //     width: 90%;
 // }
-
+table{
+    table-layout: fixed;
+}
+table, th, td{
+    word-wrap: break-word;
+}

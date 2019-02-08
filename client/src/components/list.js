@@ -20,7 +20,7 @@ class List extends Component {
     handleAddItem = async (values) => {
         console.log('Form', values)
         console.log("these are your props", this.props)
-        const {reset, getListData} = this.props;
+        const {reset, getListData, history} = this.props;
         await addListData(values.Species, values.Location, values.Amount);
         reset('notes');
         getListData();

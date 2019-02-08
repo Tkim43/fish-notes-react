@@ -40,3 +40,11 @@ export function deleteFishData(ID){
         payload: resp
     }
 }
+
+export function updateFishData(species, location, total, ID){
+    const resp = axios.post(`/api/update/species/${species}/location/${location}/total/${total}/ID/${ID}`)
+    return{
+        type: types.UPDATE_FISH_DATA,
+        payload: resp
+    }
+}

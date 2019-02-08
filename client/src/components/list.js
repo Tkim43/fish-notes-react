@@ -13,9 +13,9 @@ class List extends Component {
         show: false
     }
     componentDidMount(){
-        const {getListData, history} = this.props;
+        const {getListData} = this.props;
         getListData();
-        history.push('/notes');
+        // history.push('/notes');
     }
     handleAddItem = async (values) => {
         console.log('Form', values)
@@ -34,6 +34,7 @@ class List extends Component {
     hideModal = () =>{
         this.setState({
             show: false,
+            edit: false
         });
     }
     handleCancel = () =>{

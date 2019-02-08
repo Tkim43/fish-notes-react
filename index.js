@@ -82,7 +82,29 @@ app.get('/api/statistics', async (req, res, next) => {
     
 }, errorHandling);
 
-app.patch('/api/delete/:ID', async (req, res, next)=>{
+app.post('/api/update/species/:species/location/:location/total/:total/ID/:ID', async (req, res, next)=>{
+    try {
+        const {species, location, total, ID} = req.params;
+        const query = 'UPDATE ?? SET ?? = ?, ?? = ?, ?? =? WHERE ?? = ?';
+        const inserts = ['fish', 'species', species, 'location', location, 'total', total, 'ID',  ID];
+
+        const sql = mysql.format(query, inserts);
+
+        const results = await db.query(sql);
+
+        res.send({
+            success: true,
+            results
+        });
+    } catch(err) {
+        req.status = 500;
+        req.error = 'Error posting category';
+
+        return next();
+    }
+}, errorHandling);
+
+app.patch('/update/:ID', async (req, res, next)=>{
     try {
         const {ID} = req.params;
 

@@ -127,6 +127,30 @@ app.patch('/update/:ID', async (req, res, next)=>{
     }
 }, errorHandling);
 
+app.patch('/api/delete/:ID', async (req, res, next)=>{
+    try {
+        const {ID} = req.params;
+
+        const query = 'DELETE FROM ?? WHERE ?? = ?';
+        const inserts = ['fish', 'ID', ID];
+
+        const sql = mysql.format(query, inserts);
+
+        const results = await db.query(sql);
+
+        res.send({
+            success: true,
+            results
+        });
+    } catch(err) {
+        req.status = 500;
+        req.error = 'Error posting category';
+
+        return next();
+    }
+}, errorHandling);
+
+
 
 //starts Express server on defined port
 app.listen(PORT, ()=>{

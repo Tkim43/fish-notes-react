@@ -18,10 +18,10 @@ class Nav extends Component {
                 text: 'About',
                 to: '/about'
             },
-            {
-                text: 'Graph',
-                to: '/graph'
-            }
+            // {
+            //     text: 'Graph',
+            //     to: '/graph'
+            // }
         ]
     }
     buildLink(link){

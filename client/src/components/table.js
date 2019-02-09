@@ -22,7 +22,7 @@ class Table extends Component{
 
     table = () => {
         let species = this.props.data.data && this.props.data.data[0] ?
-        this.props.data.data.map((item, i) => <FishRow key={i} fishInfo={item} />) : <tr><td>No recent catches</td></tr>
+        this.props.data.data.map((item, i) => <FishRow className="innerFont" key={i} fishInfo={item} />) : <tr><td>No recent catches</td></tr>
         return species;
     }
 

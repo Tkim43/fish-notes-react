@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Clock from './clock';
-// import {connect} from 'react-redux'
-// import {getListData} from '../actions'
+import preview from '../assets/videos/faster.gif'
 import logo from '../assets/images/fish_count.png'
 import '../assets/css/home.scss';
 
@@ -30,17 +29,25 @@ class Home extends Component {
             </div>
             <ul ref={(e)=> this.collapsbile = e} className="collapsible popout s12">
                 <li>
-                <div className="collapsible-header"><i className="material-icons">info</i>About Fish Notes</div>
+                <div className="collapsible-header"><i className="material-icons turquoise">info</i>ABOUT FISH NOTES</div>
                 <blockquote className="collapsible-body"><span>A application that gives anglers a fast and efficient way to log all important information about their fishing trips.</span></blockquote>
                 </li>
                 <li>
                 {/* <div className="collapsible-header"><i className="material-icons">place</i>List of Locations You've been to</div> */}
-                <div className="collapsible-header"><i className="material-icons">place</i>How to use Fish Notes</div>
-                <blockquote className="collapsible-body"><span>GIF WILL GO HERE</span></blockquote>
+                <div className="collapsible-header"><i className="material-icons turquoise">place</i>INSTRUCTIONS ON HOW TO USE FISH NOTES</div>
+                <blockquote className="collapsible-body">
+                <div className="container">
+                    <img className="responsive-img turquoise" width="100%" height="100%" src={preview}></img>
+                </div>
+                {/* <div className="video-container">
+                    <iframe width="853" height="480" src={preview} frameborder="0" allowfullscreen></iframe>
+                </div> */}
+                
+                </blockquote>
                 </li>
                 <li>
                 {/* <div className="collapsible-header"><i className="material-icons">insert_chart</i>fish count statistics</div> */}
-                <div className="collapsible-header"><i className="material-icons">place</i>Technologies Used</div>
+                <div className="collapsible-header"><i className="material-icons turquoise">place</i>TECHNOLOGIES USED</div>
                 <blockquote className="collapsible-body"><span>I created fish notes using a React frontend and a Node backend. I also used Redux, Materialize, Git, MySQL, SCSS, CSS, HTML and Javascript.</span></blockquote>
                 </li>
             </ul>

@@ -98,7 +98,7 @@ app.post('/api/update/species/:species/location/:location/total/:total/ID/:ID', 
         });
     } catch(err) {
         req.status = 500;
-        req.error = 'Error posting category';
+        req.error = 'Error';
 
         return next();
     }
@@ -121,7 +121,7 @@ app.patch('/update/:ID', async (req, res, next)=>{
         });
     } catch(err) {
         req.status = 500;
-        req.error = 'Error posting category';
+        req.error = 'Error';
 
         return next();
     }

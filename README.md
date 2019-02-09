@@ -2,7 +2,7 @@
 >A application that gives anglers a fast and efficient way to log all important information about their fishing trips.
 
 ## PREVIEW OF FISH NOTES
->https://giphy.com/gifs/toXkULe0SLkQf5P5a3/html5
+>![](faster.gif)
 
 ## Technologies Used
 - React.JS

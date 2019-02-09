@@ -9,12 +9,10 @@ class FishRow extends Component {
         fishInfo: {}
     }
 
-    delete=(item, e)=>{
-        e.preventDefault();
-        e.stopPropagation();
+    delete=()=>{
+        const {ID} = this.state.fishInfo;
         const {deleteFishData, getListData} = this.props
-        console.log("its in delete", item)
-        deleteFishData(item);
+        deleteFishData(ID);
         getListData();
     }
 
@@ -26,7 +24,7 @@ class FishRow extends Component {
 
 
     displayStatic() {
-        const { species, location, total } = this.state.fishInfo;
+        const { species, location, total, ID } = this.state.fishInfo;
 
         return (
             <tr>

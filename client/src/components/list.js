@@ -17,14 +17,14 @@ class List extends Component {
         getListData();
         // history.push('/notes');
     }
-    handleAddItem = async (values) => {
+    handleAddItem =(values) => {
         console.log('Form', values)
         console.log("these are your props", this.props)
         const {reset, getListData, history} = this.props;
-        await addListData(values.Species, values.Location, values.Amount);
+        addListData(values.Species, values.Location, values.Amount);
         reset('notes');
         getListData();
-        history.push('/notes');
+        // history.push('/notes');
     }
     showModal = () =>{
         this.setState({
@@ -126,7 +126,7 @@ class List extends Component {
                     </form>
 
                     <div className="section"></div>
-                    <h4 className="monoFont center">Most Recent Catches</h4>
+                    <h4 className="monoFont turquoise center">Most Recent Catches</h4>
                     <Table/>
                     </div>
                     );

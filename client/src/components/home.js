@@ -19,7 +19,7 @@ class Home extends Component {
     render(){
         console.log("list Props", this.props);
         return(
-            <div>
+            <div className="home">
             <div className="row center">
                 {/* <h2 className="blue-text todayFont">Welcome to Fish Notes!</h2> */}
                 <img className="logo" src={logo}></img>
@@ -51,6 +51,7 @@ class Home extends Component {
                 <blockquote className="collapsible-body"><span>I created fish notes using a React frontend and a Node backend. I also used Redux, Materialize, Git, MySQL, SCSS, CSS, HTML and Javascript.</span></blockquote>
                 </li>
             </ul>
+            <section className="space"></section>
                 
             </div>
         );

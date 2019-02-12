@@ -42,6 +42,7 @@ class About extends Component {
                 </div>
                 <h5>About me</h5>
                 <p className="grey-text">I love to fish and code so I decided to combine the two in this project. I wanted to build a web application that would store all the information I wanted to save about my catches. I then decided to create Fish-Notes. Fish notes is a way for the user to keep statistics on all of their catches.</p>
+                <section className="space" ></section>
             </div>
         );
     }

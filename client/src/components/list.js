@@ -128,6 +128,7 @@ class List extends Component {
                     <div className="section"></div>
                     <h4 className="monoFont turquoise center">Most Recent Catches</h4>
                     <Table/>
+                    <section className="space"></section>
                     </div>
                     );
     }
